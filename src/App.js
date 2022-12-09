@@ -1,4 +1,3 @@
-import './App.css';
 import React, {useEffect, useState} from 'react';
 import io from 'socket.io-client';
 import Messages from './Components/Messages';
