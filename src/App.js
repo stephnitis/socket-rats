@@ -1,7 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
 import io from 'socket.io-client';
+import NewTripForm from './Components/NewTripForm';
 import Messages from './Components/Messages';
 import MessageInput from './Components/MessageInput';
+import NavBar from './Components/NavBar';
 
 function App() {
 
@@ -14,17 +21,28 @@ function App() {
   }, [setSocket]);
 
   return (
-    <div className="App">
-      <header className="App-header">Socket RATS</header>
-      { socket ? (
-        <div className="disoatch-container">
-          <Messages socket={socket}/>
-          <MessageInput socket={socket} />
-          </div>
-      ): (
-        <div>Not Connected</div>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar />
+        <Routes>
+          <Route
+            path="/newtrip"
+            element={<NewTripForm />}>
+          </Route>
+          <Route
+            path="/dispatch"
+            element={socket ? (
+              <div className="disoatch-container">
+                <Messages socket={socket} />
+                <MessageInput socket={socket} />
+              </div>
+            ) : (
+              <div>Not Connected</div>
+            )}>
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
