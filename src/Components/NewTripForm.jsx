@@ -1,10 +1,20 @@
+import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
-import { Input, InputLabel, FormHelperText, FormGroup } from '@mui/material';
-import 'smart-webcomponents-react/source/styles/smart.default.css';
-import { TimePicker } from 'smart-webcomponents-react/timepicker';
+import { Input, InputLabel, FormHelperText, FormGroup, TextField } from '@mui/material';
+
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 function NewTripForm() {
 
+
+  const [value, setValue] = useState(dayjs('2014-08-18T21:11:54'));
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <FormGroup>
@@ -21,7 +31,14 @@ function NewTripForm() {
         <Input id="trailCoordinates-input" aria-describedby="input-trail-coordinates-text" />
         <FormHelperText id="input-trail-coordinates-text">Input Latitude and Longitude</FormHelperText>
       </FormControl>
-      <TimePicker></TimePicker>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <TimePicker
+          label="Hike Start Time"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
 
     </FormGroup>
   );
