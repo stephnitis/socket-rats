@@ -10,6 +10,32 @@ import Messages from './Components/Messages';
 import MessageInput from './Components/MessageInput';
 import NavBar from './Components/NavBar';
 import UserInfoForm from './Components/UserInfoForm';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+export const theme = createTheme({
+  components: {
+    MuiFormControl: {
+      styleOverrides:{
+        root: {
+          width: '50vw',
+        }
+      }
+    }
+  },
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#C0B1B5',
+      dark: '#111706',
+      light: '#EBEFEE',
+    },
+    background: {
+      default: '#C0B1B5',
+      paper: '#EBEFEE',
+    },
+    divider: '#C0B1B5',
+  },
+})
 
 function App() {
 
@@ -22,6 +48,7 @@ function App() {
   }, [setSocket]);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div className="App">
         <NavBar />
@@ -48,6 +75,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 
