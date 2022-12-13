@@ -32,7 +32,7 @@ function UserInfoForm() {
         <InputLabel htmlFor="email-input">Email</InputLabel>
         <Input id="email-input" aria-describedby="input-email-text" />
       </FormControl>
-      
+
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label="Select Birthday"
@@ -42,6 +42,16 @@ function UserInfoForm() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
+
+      <FormControl>
+        <InputLabel htmlFor="contact-input">Phone Number</InputLabel>
+        <Input id="contact-input" aria-describedby="input-phone-contact-text" />
+      </FormControl>
+
+      <FormControl>
+        <InputLabel htmlFor="emergency-input">Emergency Contact Phone Number</InputLabel>
+        <Input id="emergency-input" aria-describedby="input-emergency-phone-contact-text" />
+      </FormControl>
 
       <FormControl>
         <InputLabel htmlFor="insurance-input">Insurance Information</InputLabel>
