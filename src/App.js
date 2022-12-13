@@ -13,6 +13,15 @@ import UserInfoForm from './Components/UserInfoForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
+  components: {
+    MuiFormControl: {
+      styleOverrides:{
+        root: {
+          width: '50vw',
+        }
+      }
+    }
+  },
   palette: {
     type: 'light',
     primary: {
