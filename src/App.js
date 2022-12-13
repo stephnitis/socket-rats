@@ -9,6 +9,7 @@ import NewTripForm from './Components/NewTripForm';
 import Messages from './Components/Messages';
 import MessageInput from './Components/MessageInput';
 import NavBar from './Components/NavBar';
+import UserInfoForm from './Components/UserInfoForm';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/newtrip"
             element={<NewTripForm />}>
+          </Route>
+          <Route
+            path="/userinfo"
+            element={<UserInfoForm />}>
           </Route>
           <Route
             path="/dispatch"
