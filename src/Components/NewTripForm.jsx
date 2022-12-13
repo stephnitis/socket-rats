@@ -3,7 +3,8 @@ import dayjs from 'dayjs';
 import { FormControl, Input, InputLabel, FormHelperText, FormGroup, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 function NewTripForm() {
 
@@ -31,15 +32,29 @@ function NewTripForm() {
         <Input id="trailCoordinates-input" aria-describedby="input-trail-coordinates-text" />
         <FormHelperText id="input-trail-coordinates-text">Input Latitude and Longitude</FormHelperText>
       </FormControl>
-      
+
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
-          label="Hike Start Time"
+        <DateTimePicker
+          label="Hike Start"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+
+        <DateTimePicker
+          label="Hike End"
           value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
+
+      <TextareaAutosize
+      aria-label="input additional route details"
+      minRows={3}
+      placeholder="Additional Route Details"
+      style={{ width: 200 }}
+    />
 
     </FormGroup>
   );
