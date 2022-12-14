@@ -24,7 +24,7 @@ function NewTripForm() {
         spacing={2} >
 
 
-        <FormControl clas>
+        <FormControl>
           <InputLabel htmlFor="name-input">Full Name</InputLabel>
           <Input id="name-input" aria-describedby="input-name-text" />
         </FormControl>
