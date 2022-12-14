@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom';
-import io from 'socket.io-client';
+import { useContext } from 'react';
+import { SettingsContext } from '../src/Context/Settings';
 import NewTripForm from './Components/NewTripForm';
-import Messages from './Components/Messages';
-import MessageInput from './Components/MessageInput';
+import UserMessages from './Components/UserMessages';
+import DispatchChat from './Components/DispatchChat';
 import NavBar from './Components/NavBar';
 import UserInfoForm from './Components/UserInfoForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -15,7 +16,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   components: {
     MuiFormControl: {
-      styleOverrides:{
+      styleOverrides: {
         root: {
           width: '50vw',
         }
@@ -37,44 +38,37 @@ export const theme = createTheme({
   },
 })
 
-function App() {
+function App({ children }) {
 
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io();
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+  const { showChat } = useContext(SettingsContext);
 
   return (
     <ThemeProvider theme={theme}>
-    <Router>
-      <div className="App">
-        <NavBar />
-        <Routes>
-          <Route
-            path="/newtrip"
-            element={<NewTripForm />}>
-          </Route>
-          <Route
-            path="/userinfo"
-            element={<UserInfoForm />}>
-          </Route>
-          <Route
-            path="/dispatch"
-            element={socket ? (
-              <div className="disoatch-container">
-                <Messages socket={socket} />
-                <MessageInput socket={socket} />
-              </div>
-            ) : (
-              <div>Not Connected</div>
-            )}>
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Routes>
+            <Route
+              path="/newtrip"
+              element={<NewTripForm />}>
+            </Route>
+            <Route
+              path="/userinfo"
+              element={<UserInfoForm />}>
+            </Route>
+            <Route
+              path="/dispatch"
+              element={!showChat ? (
+                <div className="dispatch-container">
+                  <DispatchChat />
+                </div>
+              ) : (
+                <UserMessages />
+              )}>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
     </ThemeProvider>
   );
 }
