@@ -55,7 +55,10 @@ export default function NavBar() {
               <Link to="/userinfo" >Settings</Link>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Link to="/newtrip" >New Trip</Link>
+              <Link to="/trips" >New Trip</Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseNavMenu}>
+              <Link to="/dispatch" >Dispatch Chat</Link>
             </MenuItem>
           </Menu>
           <Button color="inherit">Login</Button>

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
@@ -8,12 +9,14 @@ const socket = io.connect(server);
 export const SettingsContext = React.createContext();
 // const server = process.env.REACT_APP_SERVER
 
-const SettingsProvider = ({children}) => {
+const SettingsProvider = ({ children }) => {
 
   const [username, setUsername] = useState('');
   const [showChat, setShowChat] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
+  const [tripList, setTripList] = useState([]);
   // const [info, setInfo] = useState();
 
   const joinRoom = () => {
@@ -24,7 +27,7 @@ const SettingsProvider = ({children}) => {
   }
 
   const sendMessage = async () => {
-    if(currentMessage !== ''){
+    if (currentMessage !== '') {
       const messageData = {
         author: username,
         message: currentMessage,
@@ -36,6 +39,27 @@ const SettingsProvider = ({children}) => {
       setCurrentMessage('');
     }
   };
+
+  const getTrips = async () => {
+    try {
+      // let response = await axios.get(`${server}/trips`);
+      let response = await axios.get('http://localhost:3002/trips');      
+      let results = response.data.data.results;
+      console.log('response results ---->', results);
+      setTripList([...results]);
+      console.log('trip list ----->', tripList);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const handleShowForm = () => {
+    if (!showForm) {
+      setShowForm(true)
+    } else if (showForm) {
+      setShowForm(false)
+    }
+  }
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
@@ -63,6 +87,11 @@ const SettingsProvider = ({children}) => {
     currentMessage,
     setCurrentMessage,
     sendMessage,
+    handleShowForm,
+    showForm,
+    getTrips,
+    setTripList,
+    tripList,
     // updateInfo
   }
 

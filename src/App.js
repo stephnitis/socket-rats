@@ -12,6 +12,7 @@ import DispatchChat from './Components/DispatchChat';
 import NavBar from './Components/NavBar';
 import UserInfoForm from './Components/UserInfoForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TripList from './Components/TripList';
 
 export const theme = createTheme({
   components: {
@@ -40,22 +41,29 @@ export const theme = createTheme({
 
 function App({ children }) {
 
-  const { showChat } = useContext(SettingsContext);
+  const { showChat, showForm } = useContext(SettingsContext);
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <div className="App">
           <NavBar />
-          <Routes>
+          <Routes>            
+              
             <Route
-              path="/newtrip"
-              element={<NewTripForm />}>
+              path="/trips"
+              element={!showForm ? (
+                <TripList />
+                ) : (
+                <NewTripForm />                
+                )}>
             </Route>
+
             <Route
               path="/userinfo"
               element={<UserInfoForm />}>
             </Route>
+
             <Route
               path="/dispatch"
               element={!showChat ? (
