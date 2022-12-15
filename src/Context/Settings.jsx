@@ -53,6 +53,16 @@ const SettingsProvider = ({ children }) => {
     }
   }
 
+  const createTrip = async ({...trips}) => {
+    try {
+      let url = 'http://localhost:3002/trips';
+      let newTrip = await axios.post(url, trips);
+      setTripList([...tripList, newTrip.data]);
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   const handleShowForm = () => {
     if (!showForm) {
       setShowForm(true)
@@ -92,6 +102,7 @@ const SettingsProvider = ({ children }) => {
     getTrips,
     setTripList,
     tripList,
+    createTrip,
     // updateInfo
   }
 
