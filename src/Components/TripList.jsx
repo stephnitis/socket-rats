@@ -19,7 +19,6 @@ function TripList() {
     getTrips();
   }, [])
   console.log(tripList);
- 
 
   return (
     <>
@@ -42,8 +41,8 @@ function TripList() {
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
-                  <ListItemText primary={trip.startTime} />
-                  <ListItemText primary={trip.returnTime} />
+                  <ListItemText primary={Date(trip.startTime)} />
+                  <ListItemText primary={Date(trip.returnTime)} />
                   <ListItemText primary={trip.routeDetails} />
                 </ListItemButton>
               </List>
