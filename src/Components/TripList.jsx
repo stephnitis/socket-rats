@@ -24,10 +24,9 @@ function TripList() {
     <>
       {
         tripList.map((trip, index) => (
-          <Box>
+          <Box key={`trip-${index}`}>
 
-            <ListItemButton
-              key={`trip-${index}`}
+            <ListItemButton              
               onClick={handleClick}>
               <ListItemIcon>
                 <StarBorder />
