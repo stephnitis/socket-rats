@@ -13,8 +13,8 @@ function NewTripForm({ children }) {
 
   const [date, setDate] = useState(dayjs('2014-08-18T21:11:54'));
 
-  const { createTrip } = useContext(SettingsContext);
-  const { handleChange, handleSubmit } = useFormHook(createTrip);
+  const { createTrip, tripList } = useContext(SettingsContext);
+  const { handleChange, handleSubmit } = useFormHook(createTrip, tripList);
 
   const handleDateChange = (newValue) => {
     setDate(newValue);
@@ -29,32 +29,17 @@ function NewTripForm({ children }) {
         alignItems="center"
         spacing={2} >
 
-
-        <FormControl>
-          <InputLabel
-            htmlFor="name-input">
-            Full Name
-          </InputLabel>
-          <Input
-            onChange={handleChange}
-            id="name-input"
-            aria-describedby="input-name-text" />
-        </FormControl>
-
-
-
         <FormControl>
           <InputLabel
             htmlFor="trailname-input">
             Name of Trail
           </InputLabel>
           <Input
+            name="trailName"
             onChange={handleChange}
             id="trailname-input"
             aria-describedby="input-trail-name-text" />
         </FormControl>
-
-
 
         <FormControl >
           <InputLabel
@@ -62,6 +47,7 @@ function NewTripForm({ children }) {
             Trailhead Coordinates
           </InputLabel>
           <Input
+            name="coordinates"         
             onChange={handleChange}
             id="trailCoordinates-input"
             aria-describedby="input-trail-coordinates-text" />
@@ -71,9 +57,9 @@ function NewTripForm({ children }) {
           </FormHelperText>
         </FormControl>
 
-
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
+            name="startTime"
             label="Hike Start"
             value={date}
             onChange={handleDateChange}
@@ -81,6 +67,7 @@ function NewTripForm({ children }) {
           />
 
           <DateTimePicker
+            name="returnTime"
             label="Hike End"
             value={date}
             onChange={handleDateChange}
@@ -89,6 +76,7 @@ function NewTripForm({ children }) {
         </LocalizationProvider>
 
         <TextareaAutosize
+          name="routeDetails"
           onChange={handleChange}
           aria-label="input additional route details"
           minRows={3}

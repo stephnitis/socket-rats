@@ -1,4 +1,5 @@
 import * as React from 'react';
+import LoginButton from './Login';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -61,7 +62,7 @@ export default function NavBar() {
               <Link to="/dispatch" >Dispatch Chat</Link>
             </MenuItem>
           </Menu>
-          <Button color="inherit">Login</Button>
+          <LoginButton />
         </Toolbar>
       </AppBar>
     </Box>

@@ -21,7 +21,7 @@ const useFormHook = (callback, defaultValues={}) => {
       // let { name, value } = event.target;
     } else {
       console.log('event----->', event)
-      name = 'date';
+      name = event;
       value = event;
     } if (parseInt(value)) {
       value = parseInt(value);
