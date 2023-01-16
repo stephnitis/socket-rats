@@ -13,6 +13,7 @@ root.render(
     redirectUri={process.env.REACT_APP_AUTH_REDIRECT_URI_REACT_SITE_URL}
     audience={process.env.AUTH_API_IDENTIFIER}
     scope="read:current_user update:current_user_metadata"
+    useRefreshTokens={true}
   >
     <React.StrictMode>
       <SettingsProvider>
