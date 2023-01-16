@@ -11,6 +11,8 @@ root.render(
     domain={process.env.REACT_APP_AUTH_DOMAIN}
     clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
     redirectUri={process.env.REACT_APP_AUTH_REDIRECT_URI_REACT_SITE_URL}
+    audience={process.env.AUTH_API_IDENTIFIER}
+    scope="read:current_user update:current_user_metadata"
   >
     <React.StrictMode>
       <SettingsProvider>

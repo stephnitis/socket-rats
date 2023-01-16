@@ -6,13 +6,14 @@ import {
 } from 'react-router-dom';
 import { useContext } from 'react';
 import { SettingsContext } from '../src/Context/Settings';
-import NewTripForm from './Components/NewTripForm';
-import UserMessages from './Components/UserMessages';
-import DispatchChat from './Components/DispatchChat';
+import NewTripForm from './Components/User/NewTripForm';
+import UserMessages from './Components/User/UserMessages';
+import DispatchChat from './Components/User/DispatchChat';
 import NavBar from './Components/NavBar';
-import UserInfoForm from './Components/UserInfoForm';
+import UserInfoForm from './Components/User/UserInfoForm';
+import Profile from './Components/User/Profile'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import TripList from './Components/TripList';
+import TripList from './Components/User/TripList';
 
 export const theme = createTheme({
   components: {
@@ -48,20 +49,24 @@ function App({ children }) {
       <Router>
         <div className="App">
           <NavBar />
-          <Routes>            
-              
+          <Routes>
+
             <Route
               path="/trips"
               element={!showForm ? (
                 <TripList />
-                ) : (
-                <NewTripForm />                
-                )}>
+              ) : (
+                <NewTripForm />
+              )}>
             </Route>
 
             <Route
               path="/userinfo"
-              element={<UserInfoForm />}>
+              element={!showForm ? (
+                <Profile />
+              ) : (
+                <UserInfoForm />
+              )}>
             </Route>
 
             <Route

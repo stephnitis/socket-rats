@@ -1,5 +1,5 @@
 
-import { SettingsContext } from '../Context/Settings'
+import { SettingsContext } from '../../Context/Settings'
 import { useContext } from 'react';
 import { FormControl, Input, InputLabel, Button, FormGroup, Stack } from '@mui/material';
 

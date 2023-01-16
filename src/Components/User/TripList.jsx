@@ -1,4 +1,4 @@
-import { SettingsContext } from '../Context/Settings'
+import { SettingsContext } from '../../Context/Settings'
 import { useContext, useEffect, useState } from 'react';
 import {Button} from '@mui/material';
 import { Box, ListItemButton, ListItemIcon, ListItemText, Collapse, List } from '@mui/material';

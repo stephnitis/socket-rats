@@ -4,7 +4,32 @@ import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 const server = process.env.REACT_APP_SERVER
 const socket = io.connect(server);
-// import axios from 'axios';
+
+// var axios = require("axios").default;
+
+var options = {
+  method: 'POST',
+  url: 'https://dev-vswrpwuil03iwc0d.us.auth0.com/oauth/token',
+  headers: {'content-type': 'application/x-www-form-urlencoded'},
+  data: new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: process.env.REACT_APP_AUTH_CLIENT_ID,
+    client_secret: process.env.SECRET,
+    audience: process.env.AUTH_API_IDENTIFIER,
+  })
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
+
+// const socket = io({
+//   extraHeaders: {
+//     "my-custom-header": "1234"
+//   }
+// });
 
 export const SettingsContext = React.createContext();
 // const server = process.env.REACT_APP_SERVER
