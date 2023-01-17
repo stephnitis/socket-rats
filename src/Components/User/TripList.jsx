@@ -18,7 +18,6 @@ function TripList() {
   useEffect(() => {
     getTrips();
   }, [])
-  console.log(tripList);
 
   return (
     <>

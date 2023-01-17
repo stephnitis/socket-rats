@@ -19,11 +19,19 @@ var options = {
   })
 };
 
-axios.request(options).then(function (response) {
-  console.log(response.data);
-}).catch(function (error) {
-  console.error(error);
-});
+// var options = { 
+//   method: "GET",
+//   url: process.env.AUTH_TOKEN_URL,
+//   headers: { "authorization": "Bearer TOKEN" },
+// };
+
+axios(options)
+  .then(response => {
+    console.log('response data ---->', response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 // const socket = io({
 //   extraHeaders: {
@@ -70,13 +78,13 @@ const SettingsProvider = ({ children }) => {
       // let response = await axios.get(`${server}/trips`);
       let response = await axios.get('http://localhost:3002/trips');      
       let results = response.data.data.results;
-      console.log('response results ---->', results);
+      // console.log('response results ---->', results);
       setTripList([...results]);
-      console.log('trip list ----->', tripList);
     } catch (e) {
       console.log(e);
     }
   }
+  console.log('trip list ----->', tripList);
 
   const createTrip = async ({...trips}) => {
     try {
