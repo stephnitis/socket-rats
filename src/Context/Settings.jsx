@@ -9,7 +9,7 @@ const socket = io.connect(server);
 
 var options = {
   method: 'POST',
-  url: 'https://dev-vswrpwuil03iwc0d.us.auth0.com/oauth/token',
+  url: process.env.AUTH_TOKEN_URL,
   headers: {'content-type': 'application/x-www-form-urlencoded'},
   data: new URLSearchParams({
     grant_type: 'client_credentials',
